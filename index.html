@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>자막 정렬하기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="background"></div>
+        <div id="header" role="header">
+        </div>
+        <div id="container">
+            <div class="main-content-wrap">
+                <div class="contentsType mb-4">자막 정렬 INPUT </div>
+                <div class="contentsQBox">
+                    <textarea class="textarea">
+                        
+                    </textarea>
+                </div>
+                <div class="contentsFooter">
+                    <button type="submit" class="btn submitbtn btn-outline-danger">정렬하기</button>
+                </div>
+                <div class="contentsQBox2">
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+
+<script>
+    // function replaceEnterWithSpace(text) {
+    //     return text.replace(/\s/g, ''); // 정규 표현식을 사용하여 모든 공백 제거
+    // }
+    document.querySelector('.submitbtn').addEventListener('click', () => {
+        const textareaValue = document.querySelector('.textarea').value;
+        const textWithSpaces = textareaValue.replace(/\n/g, ' '); // 엔터를 공백으로 변환
+        const textWithoutTimestamps = textWithSpaces.replace(/\d{2}:\d{2}:\d{2}:\d{2}/g, '');
+        const textWithReplacements = textWithoutTimestamps.replace(/니다/g, '니다. ').replace(/어요/g, '어요. ').replace(/데요/g, '데요. ');;
+        const resultText = textWithReplacements;
+        document.querySelector('.contentsQBox2').innerText = resultText;
+    });
+</script>
+</html>
+

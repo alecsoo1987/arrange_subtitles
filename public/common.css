@@ -1,0 +1,21 @@
+@import url('/css/main.css');
+
+.containerWrap {
+    margin-top: 1.5rem;
+}
+
+.inputQuestionWrap  {
+    margin-bottom: 1.5rem;
+}
+
+.inputQuestionWrap input {
+    margin-bottom: 1.5rem;
+}
+
+.inputAnswerWrap label{
+    margin-bottom:1rem;
+}
+
+b {
+    font-size: 1.5rem;
+}
