@@ -20,8 +20,7 @@
             <div class="main-content-wrap">
                 <div class="contentsType mb-4">자막 정렬 INPUT </div>
                 <div class="contentsQBox">
-                    <textarea class="textarea">
-                        
+                    <textarea class="textarea" id="myTextarea">
                     </textarea>
                 </div>
                 <div class="contentsFooter">
@@ -40,14 +39,18 @@
 
 
 <script>
-    // function replaceEnterWithSpace(text) {
-    //     return text.replace(/\s/g, ''); // 정규 표현식을 사용하여 모든 공백 제거
-    // }
+    var textarea = document.getElementById('myTextarea');
+    textarea.addEventListener('click',function(){
+        if (textarea.value === '' && textarea.selectionStart == 0 && textarea.selectionEnd == 0) {
+        textarea.setSelectionRange(0, 0);
+    }
+    })
+
     document.querySelector('.submitbtn').addEventListener('click', () => {
         const textareaValue = document.querySelector('.textarea').value;
         const textWithSpaces = textareaValue.replace(/\n/g, ' '); // 엔터를 공백으로 변환
-        const textWithoutTimestamps = textWithSpaces.replace(/\d{2}:\d{2}:\d{2}:\d{2}/g, '');
-        const textWithReplacements = textWithoutTimestamps.replace(/니다/g, '니다. ').replace(/어요/g, '어요. ').replace(/데요/g, '데요. ');;
+        const textWithoutTimestamps = textWithSpaces.replace(/\d{2}:\d{2}:\d{2}:\d{2}/g, ''); // 타임 스탬프 제거
+        const textWithReplacements = textWithoutTimestamps.replace(/니다/g, '니다. ').replace(/어요/g, '어요. ').replace(/데요/g, '데요. '); // 특정 문구 마침표 추가
         const resultText = textWithReplacements;
         document.querySelector('.contentsQBox2').innerText = resultText;
     });
@@ -161,6 +164,7 @@ b {
     box-sizing: border-box;
     flex-direction: column;
     min-height: 200px;
+    max-height: 50%;
 }
 
 .uploadForm .inputQuestionWrap {
